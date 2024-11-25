@@ -18,7 +18,7 @@ public class OrganizadoresDAO extends ConnectionDAO {
         connectToDb();
 
         boolean sucesso;
-        String sql = "INSERT INTO Organizadores (id_organizadores, nome, contato) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Organizadores (id_organizador, nome, contato) VALUES (?, ?, ?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, organizador.getId_organizador());
@@ -47,16 +47,16 @@ public class OrganizadoresDAO extends ConnectionDAO {
         String sql = "UPDATE Organizadores SET nome = ?, contato = ? WHERE id_organizador = ?";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, organizador.getId_organizador());
-            pst.setString(2, organizador.getNome());
-            pst.setString(3, organizador.getContato());
-            pst.setInt(7, id);
+            pst.setString(1, organizador.getNome());
+            pst.setString(2, organizador.getContato());
+            pst.setInt(3, id);
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
             System.out.println("Erro: " + exc.getMessage());
             sucesso = false;
-        } finally {
+        }
+        finally {
             try {
                 con.close();
                 pst.close();

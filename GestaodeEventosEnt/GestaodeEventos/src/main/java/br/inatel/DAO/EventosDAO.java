@@ -6,9 +6,9 @@ import java.sql.*;
 
 import java.util.ArrayList;
 
-public class EventosDAO extends ConnectionDAO{
+public class EventosDAO extends ConnectionDAO {
 
-    public void conectar(){
+    public void conectar() {
         connectToDb();
     }
 
@@ -16,7 +16,7 @@ public class EventosDAO extends ConnectionDAO{
         connectToDb();
 
         boolean sucesso;
-        String sql = "INSERT INTO Eventos (id_eventos, nome, data, local, capacidade, ingressos_disponiveis, ingressos_vendidos, organizadores_id_organizador) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Eventos (id_evento, nome, data, local, capacidade, ingressos_disponiveis, ingressos_vendidos, organizadores_id_organizador) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, evento.getId_evento());
@@ -42,7 +42,8 @@ public class EventosDAO extends ConnectionDAO{
         }
         return sucesso;
     }
-    public boolean updateEvento(int id, Eventos evento) {
+
+    public boolean updateEvento(int id, Eventos evento , int idOrg) {
         connectToDb();
 
         boolean sucesso;
@@ -55,7 +56,8 @@ public class EventosDAO extends ConnectionDAO{
             pst.setInt(4, evento.getCapacidade());
             pst.setInt(5, evento.getIngressos_disponiveis());
             pst.setInt(6, evento.getIngressos_vendidos());
-            pst.setInt(7, id);
+            pst.setInt(7, idOrg);
+            pst.setInt(8, id); // Índice ajustado
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -72,7 +74,7 @@ public class EventosDAO extends ConnectionDAO{
         return sucesso;
     }
 
-    public boolean deleteEvento(int id){
+    public boolean deleteEvento(int id) {
         connectToDb();
 
         boolean sucesso;

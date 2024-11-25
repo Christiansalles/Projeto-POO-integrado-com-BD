@@ -33,8 +33,8 @@ public class Main {
 
         List<Organizadores> organizadoresList1 = new ArrayList<>();
         Organizadores o1 = new Organizadores(1, "Joao", "3422-8900");
-        Organizadores o2 = new Organizadores(2, "Joao", "3422-8900");
-        Organizadores o3 = new Organizadores(3, "Joao", "3422-8900");
+        Organizadores o2 = new Organizadores(2, "Joa", "3423-8900");
+        Organizadores o3 = new Organizadores(3, "Jo", "3424-8900");
         organizadoresList1.add(o1);
         organizadoresList1.add(o2);
         organizadoresList1.add(o3);
